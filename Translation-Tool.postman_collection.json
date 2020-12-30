@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "e57eb7f0-5580-4018-81ef-aefe134a8eb8",
+		"name": "Translation-Tool",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Translation",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"key\":\"test\",\"target\":\"Headline\",\"language\":\"de\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Url}}/translations",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"translations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Translations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Translation by UUid",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/translations/8fea534e-a6e1-4a2c-b5f9-7627c1fad3f1",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"translations",
+						"8fea534e-a6e1-4a2c-b5f9-7627c1fad3f1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Translation",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}/translations/9c2484db-92e3-4c3f-bf65-d41e2d8ee30d",
+					"host": [
+						"{{Url}}"
+					],
+					"path": [
+						"translations",
+						"9c2484db-92e3-4c3f-bf65-d41e2d8ee30d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Translation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	]
+}
