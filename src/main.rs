@@ -2,6 +2,7 @@
 extern crate diesel;
 
 use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder};
+use actix_cors::Cors;
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
 
@@ -27,14 +28,16 @@ async fn main() -> std::io::Result<()> {
         .build(manager)
         .expect("Failed to create pool.");
 
-    let bind = "127.0.0.1:8080";
+    let bind = "127.0.0.1:8081";
 
     println!("Starting server at: {}", &bind);
 
     HttpServer::new(move || {
+        let cors = Cors::permissive();
         App::new()
             .data(pool.clone())
             .wrap(middleware::Logger::default())
+            .wrap(cors)
             .service(index)
             .service(
                 web::scope("/api")

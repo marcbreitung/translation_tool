@@ -112,7 +112,7 @@ pub async fn delete_translation(
             HttpResponse::InternalServerError().finish()
         })?;
 
-    let res = HttpResponse::Ok().body(format!("Deleted translations: {}", translation));
+    let delete_translation = models::DeleteTranslation::new(translation_id, translation); 
 
-    Ok(res)
+    Ok(HttpResponse::Ok().json(delete_translation))
 }
