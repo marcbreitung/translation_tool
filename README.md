@@ -1,6 +1,6 @@
 # Translations (WIP)
 
-Translation tool build with rust
+Translation tool (api) build with rust
 
 ## Start docker with postgres database
 ```zsh
@@ -14,4 +14,3 @@ diesel setup
 ```zsh
 cargo run
 ```
-
