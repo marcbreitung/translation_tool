@@ -36,9 +36,6 @@ pub struct DeleteTranslation {
 
 impl DeleteTranslation {
     pub fn new(id: Uuid, status: usize) -> Self {
-        Self {
-            id,
-            status,
-        }
+        Self { id, status }
     }
 }

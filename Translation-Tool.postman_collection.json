@@ -6,7 +6,280 @@
 	},
 	"item": [
 		{
+			"name": "translations",
+			"item": [
+				{
+					"name": "List Translations",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Translation by UUid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations/8fea534e-a6e1-4a2c-b5f9-7627c1fad3f1",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations",
+								"8fea534e-a6e1-4a2c-b5f9-7627c1fad3f1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Translation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"key\":\"{{$randomInt}}\",\"target\":\"{{$randomLoremWords}}\",\"language\":\"de\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Translation",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"key\":\"{{$randomInt}}\",\"target\":\"{{$randomLoremWords}}\",\"language\":\"de\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations/07fa38f3-e3ee-470d-864a-40a95713f0fa",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations",
+								"07fa38f3-e3ee-470d-864a-40a95713f0fa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Translation",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations/07fa38f3-e3ee-470d-864a-40a95713f0fa",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations",
+								"07fa38f3-e3ee-470d-864a-40a95713f0fa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "languages",
+			"item": [
+				{
+					"name": "List Languages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Language",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"key\":\"{{$randomInt}}\",\"target\":\"{{$randomLoremWords}}\",\"language\":\"de\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Language by UUid Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations/8fea534e-a6e1-4a2c-b5f9-7627c1fad3f1",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations",
+								"8fea534e-a6e1-4a2c-b5f9-7627c1fad3f1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Language",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"key\":\"{{$randomInt}}\",\"target\":\"{{$randomLoremWords}}\",\"language\":\"de\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations/07fa38f3-e3ee-470d-864a-40a95713f0fa",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations",
+								"07fa38f3-e3ee-470d-864a-40a95713f0fa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Language",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{UrlBase}}{{APIEndpoint}}/translations/07fa38f3-e3ee-470d-864a-40a95713f0fa",
+							"host": [
+								"{{UrlBase}}{{APIEndpoint}}"
+							],
+							"path": [
+								"translations",
+								"07fa38f3-e3ee-470d-864a-40a95713f0fa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -14,118 +287,6 @@
 					"raw": "{{UrlBase}}",
 					"host": [
 						"{{UrlBase}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "List Translations",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{UrlBase}}{{APIEndpoint}}/translations",
-					"host": [
-						"{{UrlBase}}{{APIEndpoint}}"
-					],
-					"path": [
-						"translations"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Find Translation by UUid",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{UrlBase}}{{APIEndpoint}}/translations/8fea534e-a6e1-4a2c-b5f9-7627c1fad3f1",
-					"host": [
-						"{{UrlBase}}{{APIEndpoint}}"
-					],
-					"path": [
-						"translations",
-						"8fea534e-a6e1-4a2c-b5f9-7627c1fad3f1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Add Translation",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"key\":\"{{$randomInt}}\",\"target\":\"{{$randomLoremWords}}\",\"language\":\"de\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{UrlBase}}{{APIEndpoint}}/translations",
-					"host": [
-						"{{UrlBase}}{{APIEndpoint}}"
-					],
-					"path": [
-						"translations"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Translation",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"key\":\"{{$randomInt}}\",\"target\":\"{{$randomLoremWords}}\",\"language\":\"de\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{UrlBase}}{{APIEndpoint}}/translations/07fa38f3-e3ee-470d-864a-40a95713f0fa",
-					"host": [
-						"{{UrlBase}}{{APIEndpoint}}"
-					],
-					"path": [
-						"translations",
-						"07fa38f3-e3ee-470d-864a-40a95713f0fa"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Translation",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{UrlBase}}{{APIEndpoint}}/translations/07fa38f3-e3ee-470d-864a-40a95713f0fa",
-					"host": [
-						"{{UrlBase}}{{APIEndpoint}}"
-					],
-					"path": [
-						"translations",
-						"07fa38f3-e3ee-470d-864a-40a95713f0fa"
 					]
 				}
 			},

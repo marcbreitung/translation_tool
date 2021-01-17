@@ -1,15 +1,16 @@
 #[macro_use]
 extern crate diesel;
 
-use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder};
 use actix_cors::Cors;
+use actix_web::{get, middleware, web, App, HttpResponse, HttpServer, Responder};
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
 
 mod models;
-mod repository;
+mod repositories;
 mod schema;
 mod translation;
+mod languages;
 
 #[get("/")]
 async fn index() -> impl Responder {
@@ -45,7 +46,12 @@ async fn main() -> std::io::Result<()> {
                     .service(translation::get_translation)
                     .service(translation::add_translation)
                     .service(translation::update_translation)
-                    .service(translation::delete_translation),
+                    .service(translation::delete_translation)
+                    .service(languages::get_languages)
+                    .service(languages::get_language)
+                    .service(languages::add_language)
+                    .service(languages::update_language)
+                    .service(languages::delete_language),
             )
     })
     .bind(&bind)?

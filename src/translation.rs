@@ -1,9 +1,10 @@
-use crate::models;
-use crate::repository;
 use actix_web::{delete, get, post, put, web, Error, HttpResponse};
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
 use uuid::Uuid;
+
+use crate::models::translations::{DeleteTranslation, NewTranslation};
+use crate::repositories::translations;
 
 type DbPool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
@@ -12,7 +13,7 @@ pub async fn get_translations(pool: web::Data<DbPool>) -> Result<HttpResponse, E
     let conn = pool
         .get()
         .expect("Couldn't get database connection from pool");
-    let users = web::block(move || repository::find_translations(&conn))
+    let users = web::block(move || translations::find_translations(&conn))
         .await
         .map_err(|e| {
             eprintln!("{}", e);
@@ -32,7 +33,7 @@ pub async fn get_translation(
         .get()
         .expect("Couldn't get database connection from pool");
     let translation =
-        web::block(move || repository::find_translation_by_uid(translation_id, &conn))
+        web::block(move || translations::find_translation_by_uid(translation_id, &conn))
             .await
             .map_err(|e| {
                 eprintln!("{}", e);
@@ -51,13 +52,13 @@ pub async fn get_translation(
 #[post("/translations")]
 pub async fn add_translation(
     pool: web::Data<DbPool>,
-    form: web::Json<models::NewTranslation>,
+    form: web::Json<NewTranslation>,
 ) -> Result<HttpResponse, Error> {
     let conn = pool
         .get()
         .expect("Couldn't get database connection from pool");
     let translation = web::block(move || {
-        repository::add_translation(&form.key, &form.target, &form.language, &conn)
+        translations::add_translation(&form.key, &form.target, &form.language, &conn)
     })
     .await
     .map_err(|e| {
@@ -71,7 +72,7 @@ pub async fn add_translation(
 #[put("/translations/{translation_id}")]
 pub async fn update_translation(
     pool: web::Data<DbPool>,
-    form: web::Json<models::NewTranslation>,
+    form: web::Json<NewTranslation>,
     translation_id: web::Path<Uuid>,
 ) -> Result<HttpResponse, Error> {
     let translation_id = translation_id.into_inner();
@@ -79,7 +80,7 @@ pub async fn update_translation(
         .get()
         .expect("Couldn't get database connection from pool");
     let translation = web::block(move || {
-        repository::update_translation(
+        translations::update_translation(
             translation_id,
             &form.key,
             &form.target,
@@ -105,14 +106,14 @@ pub async fn delete_translation(
     let conn = pool
         .get()
         .expect("Couldn't get database connection from pool");
-    let translation = web::block(move || repository::delete_translation(translation_id, &conn))
+    let translation = web::block(move || translations::delete_translation(translation_id, &conn))
         .await
         .map_err(|e| {
             eprintln!("{}", e);
             HttpResponse::InternalServerError().finish()
         })?;
 
-    let delete_translation = models::DeleteTranslation::new(translation_id, translation); 
+    let delete_translation = DeleteTranslation::new(translation_id, translation);
 
     Ok(HttpResponse::Ok().json(delete_translation))
 }

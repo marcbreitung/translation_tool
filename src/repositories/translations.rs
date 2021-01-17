@@ -1,7 +1,7 @@
 use diesel::prelude::*;
 use uuid::Uuid;
 
-use crate::models::Translation;
+use crate::models::translations::Translation;
 
 pub fn find_translations(conn: &PgConnection) -> Result<Vec<Translation>, diesel::result::Error> {
     use crate::schema::translations::dsl::*;
